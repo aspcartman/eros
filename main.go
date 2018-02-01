@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	db := storage.NewDB("localhost", 7771, "postgres", "", "eros")
+	db := storage.NewDB("postgres", 5432, "postgres", "", "eros")
 	db.Upgrade()
 
 }
