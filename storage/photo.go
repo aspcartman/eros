@@ -54,7 +54,7 @@ func (tx *Tx) SavePhoto(p *Photo) {
 }
 
 
-func (p *Photo) refresh() {
+func (p *Photo) Refresh() {
 	data := p.Original
 	if len(data) == 0 {
 		env.Log.WithField("url", p.URL).Info("downloading photo")
