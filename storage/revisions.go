@@ -64,6 +64,12 @@ var revisions = [...]func(tx *Tx){
 			}
 		}
 	},
+	4: func(tx *Tx) {
+		for p := range tx.AllPhotos() {
+			p.refresh()
+			tx.SavePhoto(&p)
+		}
+	},
 }
 
 func ptos(s *string) string {

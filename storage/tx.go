@@ -3,6 +3,7 @@ package storage
 import (
 	"github.com/jackc/pgx"
 	"github.com/aspcartman/exceptions"
+	"unsafe"
 )
 
 type Tx struct {
@@ -25,4 +26,15 @@ func (tx *Tx) Commit() {
 	if err != nil {
 		e.Throw("commit failed", err)
 	}
+}
+
+func (tx *Tx) Query(sql string, args ...interface{}) *Rows {
+	rows, err := tx.Tx.Query(sql, args...)
+	if err != nil {
+		e.Throw("failed making query", err, e.Map{
+			"query": sql,
+			"args":  args,
+		})
+	}
+	return (*Rows)(unsafe.Pointer(rows))
 }
