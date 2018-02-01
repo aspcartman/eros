@@ -21,7 +21,7 @@ type oldUser struct {
 }
 
 func GetOldUsers() (<-chan oldUser, int) {
-	db := NewDB("eros.ru", 7770, "postgres", "", "himeros")
+	db := NewDB("80.93.182.219", 7770, "postgres", "", "himeros")
 	tx := db.tx()
 
 	count := 0
