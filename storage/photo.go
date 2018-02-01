@@ -55,6 +55,9 @@ func (tx *Tx) SavePhoto(p *Photo) {
 
 
 func (p *Photo) Refresh() {
+	defer e.Catch(func(e *e.Exception) {
+	})
+
 	data := p.Original
 	if len(data) == 0 {
 		env.Log.WithField("url", p.URL).Info("downloading photo")
