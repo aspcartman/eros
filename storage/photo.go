@@ -46,7 +46,7 @@ func (tx *Tx) SavePhoto(p *Photo) {
 			p.UserID, p.Source, p.URL, p.Original, p.Small, p.Placeholder)
 	} else {
 		tx.Exec(`UPDATE photos
-				 SET	(user_id, source, url, original, small, placeholder) = ($2,$3,$4,$5,$6)
+				 SET	(user_id, source, url, original, small, placeholder) = ($2,$3,$4,$5,$6,$7)
 				 WHERE 	id = $1`,
 			p.ID, p.UserID, p.Source, p.URL, p.Original, p.Small, p.Placeholder)
 	}
