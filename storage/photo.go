@@ -33,6 +33,7 @@ func (tx *Tx) AllPhotos() <-chan Photo {
 		p := Photo{}
 		for rows.Next() {
 			rows.Scan(&p.ID, &p.UserID, &p.Source, &p.URL, &p.Original, &p.Small, &p.Placeholder)
+			ch <- p
 		}
  	}()
 	return ch
